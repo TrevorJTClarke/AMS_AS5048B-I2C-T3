@@ -72,6 +72,7 @@ void AMS_AS5048B::begin(void) {
 	_lastAngleRaw = 0.0;
 	_zeroRegVal = AMS_AS5048B::zeroRegR();
 	_addressRegVal = AMS_AS5048B::addressRegR();
+	AMS_AS5048B::hasError = false;
 
 	AMS_AS5048B::resetMovingAvgExp();
 
@@ -435,6 +436,9 @@ uint8_t AMS_AS5048B::readReg8(uint8_t address) {
 	if (requestResult){
 		Serial.print("I2C error: ");
 		Serial.println(requestResult);
+		AMS_AS5048B::hasError = true;
+	} else {
+		AMS_AS5048B::hasError = false;
 	}
 
 	Wire.requestFrom(_chipAddress, nbByte2Read);
@@ -457,6 +461,9 @@ uint16_t AMS_AS5048B::readReg16(uint8_t address) {
 	if (requestResult){
 		Serial.print("I2C error: ");
 		Serial.println(requestResult);
+		AMS_AS5048B::hasError = true;
+	} else {
+		AMS_AS5048B::hasError = false;
 	}
 
 

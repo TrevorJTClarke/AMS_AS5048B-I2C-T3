@@ -125,6 +125,7 @@ class AMS_AS5048B {
 	void		updateMovingAvgExp(void); //measure the current angle and feed the Exponential Moving Average calculation
 	double		getMovingAvgExp(int unit = U_RAW); //get Exponential Moving Average calculation
 	void		resetMovingAvgExp(void); //reset Exponential Moving Average calculation values
+	boolean		hasError;
 
  private:
 	//variables
